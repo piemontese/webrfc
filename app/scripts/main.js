@@ -74,7 +74,8 @@ function ajaxGetData(data) {
 function ajaxShowResult(data, modal) {
 //    if( gbAjaxSucces ) {
     if( data.result === undefined ) { 
-        alert("no data");
+        //alert("no data");
+        window.location.href = '404.html';
         return;
     }
     if( data ) {
