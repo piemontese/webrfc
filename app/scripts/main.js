@@ -20,7 +20,8 @@ var gbAjaxSucces = false;
 
 $(document).ready(function () {
 
-    $('.results-container').hide();
+    clearResults();
+    
     $(document).ajaxComplete(function(event, xhr, settings) {
         ajaxShowResult(gjAjaxData, '#myModal');
     });
@@ -30,8 +31,7 @@ $(document).ready(function () {
 });
 
 
-
-$('button').click(function(e){
+$('#execButton').click(function(e){
     e.preventDefault();
     var data = { 
 //        _FUNCTION: 'Z_SAMPLERFC',
@@ -52,6 +52,11 @@ $('button').click(function(e){
     
 });
 
+$('#deleteButton').click(function(e) {
+    e.preventDefault();
+    clearResults();
+});
+                       
 function ajaxGetData(data) {
     gbAjaxSucces = false;
     $.ajax({
@@ -77,62 +82,84 @@ function ajaxGetData(data) {
 }
 
 function ajaxShowResult(data, modal) {
-//    if( gbAjaxSucces ) {
     if( data.result === undefined ) {   
-        //alert("no data");
-        //window.location.href = '404.html';
         $('.results-container').html('<h1>Sistema SAP non disponibile<h1>');
         $('.results-container').show();
     }
     else if( !data.result.length ) {
+        $('.results-container').html('<h2>Nessun risultato<h2>');
         $('.results-container').show();
     }
     else {
-        var str = '';
-        /*
-        str = "<ul>";
-        for( var i=0; i<data.results.length; i++ ) {
-            if( data.results[i].key == "MATNR" ) str += '</br>';
-            str += "<li>" + data.results[i].key + ":\t" + data.results[i].value + "\n</li>";
-        }
-        */
-        /*
-        for( var i=0; i<data.results.item.length; i++ ) {
-            str += "<li>" + data.results.item[i].key + ":\t" + data.results.item[i].value + "\n</li>";
-        }
-        */
-        //str += "</ul>";
-            
-        str += '<div class=\"container\">';
-        str += '  <h2>Tabella MARC</h2>';
-        str += '  <p>Elenco valori</p>';
-        str += '  <table class=\"table table-hover\">';
-        str += '    <thead>';
-        str += '      <tr>';
-        for( var i=0; i<6; i++ ) {
-            str += '<th>' + data.results[i].key + '</th>';
-        }
-        str += '      </tr>';
-        str += '    </thead>';
-        str += '    <tbody>';
-        for( var j=0; j<data.results.length; j+=6 ) {
+        showTableResults(data);
+    }
+}
+
+function showTableResults(data) {
+    var header = $('#sqlFields').val().split(" ");
+    var str = '';
+    /*
+    str = "<ul>";
+    for( var i=0; i<data.results.length; i++ ) {
+        if( data.results[i].key == "MATNR" ) str += '</br>';
+        str += "<li>" + data.results[i].key + ":\t" + data.results[i].value + "\n</li>";
+    }
+    */
+    /*
+    for( var i=0; i<data.results.item.length; i++ ) {
+        str += "<li>" + data.results.item[i].key + ":\t" + data.results.item[i].value + "\n</li>";
+    }
+    */
+    //str += "</ul>";
+        
+    str += '<div class=\"container\">';
+    str += '  <h2>Tabella MARC</h2>';
+    str += '  <p>Elenco valori</p>';
+    str += '  <table class=\"table table-hover\">';
+    str += '    <thead>';
+    str += '      <tr>';
+    /*
+    for( var i=0; i<header.length; i++ ) {
+        str += '<th>' + data.results[i].key + '</th>';
+    }
+    */
+    for( var i=0; i<header.length; i++ ) {
+        str += '<th>' + header[i] + '</th>';
+    }
+    str += '      </tr>';
+    str += '    </thead>';
+    str += '    <tbody>';
+    if ( data.result !== undefined ) { 
+        for( var j=0; j<data.results.header.length; j+=6 ) {
             str += '      <tr>';
-            for( var i=j; i<j+6; i++ ) {
+            for( var i=j; i<j+header.length; i++ ) {
                 str += '<td>' + data.results[i].value + '</td>';
             }
             str += '      </tr>';
         }
-        str += '    </tbody>';
-        str += '  </table>';        
-        str += '</div>';
-        
-        //alert("succes\n" + str); 
-        $(modal).modal().find('.modal-title').text('Risultati');
-        $(modal).modal().find('.modal-body').html(str);
     }
-//    }
+    str += '    </tbody>';
+    str += '  </table>';        
+    str += '</div>';
+    
+    //$(modal).modal().find('.modal-title').text('Risultati');
+    //$(modal).modal().find('.modal-body').html(str);
+    $('.results-container').html(str);
+    $('.results-container').show();
 }
 
+function clearResults() {
+    $('#_FUNCTION').val("");
+    $('#sqlTable').val("");
+    $('#sqlWhere').val("");
+    $('#sqlFields').val("");
+    
+    $('.results-container').hide();
+    
+    gjAjaxData = [];
+    gbAjaxSucces = false;    
+}
+                       
 function jsonCallback(data) {
 //    gbAjaxSucces = true;
 }
