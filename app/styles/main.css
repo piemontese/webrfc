@@ -7304,16 +7304,16 @@ td.visible-print {
   margin: 50px auto 0 auto;
 }
 body {
-  padding-top: 50px;
+  padding-top: 40px;
 }
 .starter-template {
   padding: 10px 15px;
   text-align: center;
 }
 .form-input {
-  padding: 5px 15px;
+  padding: 5px 25px;
   text-align: left;
-  background-color: azure;
+  background-color: #f0f0f0;
 }
 .results-container {
   padding: 10px 15px;
