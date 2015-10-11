@@ -75,14 +75,27 @@
 
     <div class="container">
         <div class="starter-template">
-            <h1>Z_SAMPLERFC</h1>
-            <button type="button" id="button" class="btn btn-primary" data-toggle="modal">Test</button>
+            <h1>Esempio di chiamata webrfc</h1>
+            <!--<button type="button" id="button" class="btn btn-primary" data-toggle="modal">Test</button>-->
         </div>
         <form class="form-input">
           <div class="form-group">
-            <label for="tableName">Nome tabella</label>
-            <input type="email" class="form-control" id="tableName" placeholder="Nome tanella">
+            <label for="_FUNCTION">Nome Rfc</label>
+            <input type="text" class="form-control" id="_FUNCTION" placeholder="Nome Rfc" text="Z_SAMPLERFC">
           </div>
+          <div class="form-group">
+            <label for="sqlTable">Nome tabella</label>
+            <input type="text" class="form-control" id="sqlTable" placeholder="Nome tabella">
+          </div>
+          <div class="form-group">
+            <label for="sqlWhere">Clausola where</label>
+            <input type="text" class="form-control" id="sqlWhere" placeholder="Clausola where">
+          </div>
+          <div class="form-group">
+            <label for="sqlFields">Elenco campi</label>
+            <input type="text" class="form-control" id="sqlFields" placeholder="Elenco campi">
+          </div>
+          <!--
           <div class="form-group">
             <label for="exampleInputFile">File input</label>
             <input type="file" id="exampleInputFile">
@@ -93,11 +106,17 @@
               <input type="checkbox"> Check me out
             </label>
           </div>
-          <button type="submit" class="btn btn-default">Submit</button>
+          -->
+          <button type="submit" class="btn btn-default">Esegui</button>
         </form>
+        
+        <div class="results-container">
+            <p>Nessun risultato</p>
+        </div><!-- /.results-container -->
     </div><!-- /.container -->
     
-        <!-- Trigger the modal with a button -->
+
+    <!-- Trigger the modal with a button -->
     <!--<button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Risultati</button>
 
     <!-- Modal -->

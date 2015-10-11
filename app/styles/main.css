@@ -7315,4 +7315,9 @@ body {
   text-align: left;
   background-color: azure;
 }
+.results-container {
+  padding: 10px 15px;
+  text-align: center;
+  color: lightgray;
+}
 /*# sourceMappingURL=/styles/main.css.map */

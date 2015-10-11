@@ -20,6 +20,7 @@ var gbAjaxSucces = false;
 
 $(document).ready(function () {
 
+    $('.results-container').hide();
     $(document).ajaxComplete(function(event, xhr, settings) {
         ajaxShowResult(gjAjaxData, '#myModal');
     });
@@ -33,13 +34,17 @@ $(document).ready(function () {
 $('button').click(function(e){
     e.preventDefault();
     var data = { 
-        _FUNCTION: 'Z_SAMPLERFC',
+//        _FUNCTION: 'Z_SAMPLERFC',
+        _FUNCTION: $('#_FUNCTION').val(),
         name:      'Pietro',
         callback:  'jsonCallback',
-        sqlTable:  'MARC',
-//        sqlWhere:  "MATNR = 'ACF090-071026' and werks = '0100'",
-        sqlWhere:  'MATNR = \'ACF090-071026\'',
-        sqlFields: 'matnr werks ekgrp dispo sobsl dismm'
+//        sqlTable:  'MARC',
+        sqlTable:  $('#sqlTable').val(),
+//        sqlWhere:  'MATNR = \'ACF090-071026\' and werks = \'0100\'',
+//        sqlWhere:  'MATNR = \'ACF090-071026\'',
+        sqlWhere:  $('#sqlWhere').val(),
+//        sqlFields: 'matnr werks ekgrp dispo sobsl dismm'
+        sqlFields: $('#sqlFields').val(),
     };
     
     ajaxGetData(data);
@@ -73,12 +78,16 @@ function ajaxGetData(data) {
 
 function ajaxShowResult(data, modal) {
 //    if( gbAjaxSucces ) {
-    if( data.result === undefined ) { 
+    if( data.result === undefined ) {   
         //alert("no data");
-        window.location.href = '404.html';
-        return;
+        //window.location.href = '404.html';
+        $('.results-container').html('<h1>Sistema SAP non disponibile<h1>');
+        $('.results-container').show();
     }
-    if( data ) {
+    else if( !data.result.length ) {
+        $('.results-container').show();
+    }
+    else {
         var str = '';
         /*
         str = "<ul>";
