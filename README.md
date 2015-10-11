@@ -9,8 +9,9 @@ Sap webrfc
  - Clone github piemontese/webrfc
  - Run grunt for building and grunt serve for preview
 
+
 Author
 
-Thomas Lebeau
+Pietro Piemontese
 
     
