@@ -8,3 +8,9 @@ Sap webrfc
  - Run: yo bootstrap-less to scaffold your project
  - Clone github piemontese/webrfc
  - Run grunt for building and grunt serve for preview
+
+Author
+
+Thomas Lebeau
+
+    
