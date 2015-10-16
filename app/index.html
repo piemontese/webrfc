@@ -15,41 +15,7 @@
     <script src="bower_components/modernizr/modernizr.js"></script>
     <!-- endbuild -->
   </head>
-  <body>
-      <!--
-    <div class="container">
-      <div class="jumbotron">
-        <h1>'Allo, 'Allo!</h1>
-        <p>You now have</p>
-        <ul>
-          <li>HTML5 Boilerplate</li>
-          <li>Bootstrap</li>
-          <li>Font Awesome <i class="fa fa-flag"></i></li>
-        </ul>
-        <p>installed.</p>
-        <h3>Enjoy coding! - Yeoman</h3>
-      </div>
-    </div>
--->
-
-
-    <!--[if lt IE 7]>
-      <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
-    <![endif]-->
-
-    <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
-      <!--
-    <script>
-      (function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=
-      function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;
-      e=o.createElement(i);r=o.getElementsByTagName(i)[0];
-      e.src='//www.google-analytics.com/analytics.js';
-      r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
-      ga('create','UA-XXXXX-X');ga('send','pageview');
-    </script>
--->
-
-
+<body>
     <nav class="navbar navbar-inverse navbar-fixed-top">
       <div class="container">
         <div class="navbar-header">
@@ -58,7 +24,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
-            </button>
+          </button>
           <a class="navbar-brand" href="#">Webrfc</a>
         </div>
         <!--
@@ -73,16 +39,26 @@
       </div>
     </nav>
 
+    <!--
+    <div class="container">
+        <div class="starter-template">
+            <h1>Z_SAMPLERFC</h1>
+            <button type="button" id="button" class="btn btn-primary" data-toggle="modal">Test</button>
+        </div>
+    </div><!-- /.container -->
+    -->
     <div class="container">
         <div class="starter-template">
             <h1>Esempio di chiamata webrfc</h1>
             <!--<button type="button" id="button" class="btn btn-primary" data-toggle="modal">Test</button>-->
         </div>
         <form class="form-input">
+          <!--
           <div class="form-group">
             <label for="_FUNCTION">Nome Rfc</label>
             <input type="text" class="form-control" id="_FUNCTION" placeholder="Nome Rfc" text="Z_SAMPLERFC">
           </div>
+          -->
           <div class="form-group">
             <label for="sqlTable">Nome tabella</label>
             <input type="text" class="form-control" id="sqlTable" placeholder="Nome tabella">
@@ -107,8 +83,13 @@
             </label>
           </div>
           -->
-          <button type="submit" class="btn btn-default" id="execButton">Esegui</button>
-          <button type="button" class="btn btn-default" id="deleteButton">Cancella risultati</button>
+          <div class="form-group">
+              <button type="submit" class="btn btn-success has-spinner" id="execButton">
+                  <span class="spinner"><i class="icon-spin icon-refresh"></i></span>
+                  Esegui
+              </button>
+              <button type="button" class="btn btn-danger" id="deleteButton">Cancella risultati</button>
+          </div>
         </form>
         
         <div class="results-container">
@@ -116,8 +97,7 @@
         </div><!-- /.results-container -->
     </div><!-- /.container -->
     
-
-    <!-- Trigger the modal with a button -->
+        <!-- Trigger the modal with a button -->
     <!--<button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Risultati</button>
 
     <!-- Modal -->
@@ -140,9 +120,8 @@
 
       </div><!-- /.modal-dialog -->
     </div><!-- /#myModal -->
-      
-      
-      
+    
+
 
         <!-- build:js scripts/main.js -->
         <script src="bower_components/jquery/jquery.js"></script>
