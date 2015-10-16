@@ -86,7 +86,20 @@ function ajaxGetData(data) {
             */
             ajaxShowResult(data);
             $('#execButton').toggleClass('active');
-        }
+        },
+        fail: function(jqXHR, textStatus){
+            if(textStatus === 'timeout')
+            {     
+                $('.results-container').html('<h1>Sistema SAP non disponibile<h1>');
+                $('.results-container').show();
+ //               alert('Failed from timeout'); 
+                //do something. Try again perhaps?
+            } else {
+                $('.results-container').html('<h1>' + textStatus + '<h1>');
+                $('.results-container').show();
+            }
+        },
+        timeout: 10000 // sets timeout to 10 seconds
     });
 }
 
@@ -94,12 +107,10 @@ function ajaxShowResult(data, modal) {
     if( data.results === undefined ) {   
         $('.results-container').html('<h1>Sistema SAP non disponibile<h1>');
         $('.results-container').show();
-    }
-    else if( !data.results.length ) {
+    } else if( !data.results.length ) {
         $('.results-container').html('<h2>Nessun risultato<h2>');
         $('.results-container').show();
-    }
-    else {
+    } else {
         showTableResults(data);
     }
 }
