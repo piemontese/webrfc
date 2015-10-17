@@ -50,7 +50,7 @@ $(function(){
         };
 
         ajaxGetData(data);
-    //    ajaxShowResult(gjAjaxData, '#myModal');
+        ajaxShowResult(gjAjaxData, '#myModal');
 
     });
 
@@ -76,7 +76,7 @@ function ajaxGetData(data) {
 //            gjAjaxData = data;
 //            gbAjaxSucces = true;
             ajaxShowResult(data);
-            $('#execButton').toggleClass('active');
+//            $('#execButton').toggleClass('active');
         },
         error: function (data, textStatus, errorThrown) {
             /*
@@ -85,7 +85,7 @@ function ajaxGetData(data) {
                   errorThrown);
             */
             ajaxShowResult(data);
-            $('#execButton').toggleClass('active');
+//            $('#execButton').toggleClass('active');
         },
         fail: function(jqXHR, textStatus){
             if(textStatus === 'timeout')
@@ -101,6 +101,7 @@ function ajaxGetData(data) {
         },
         timeout: 10000 // sets timeout to 10 seconds
     });
+    $('#execButton').toggleClass('active');
 }
 
 function ajaxShowResult(data, modal) {
