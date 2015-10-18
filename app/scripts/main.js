@@ -50,7 +50,8 @@ $(function(){
         };
 
         ajaxGetData(data);
-        ajaxShowResult(gjAjaxData, '#myModal');
+        if( gbAjaxSucces == false )
+            ajaxShowResult(gjAjaxData, '#myModal');
 
     });
 
@@ -74,7 +75,7 @@ function ajaxGetData(data) {
         jsonpCallback: data.callback,
         success: function(data) {
 //            gjAjaxData = data;
-//            gbAjaxSucces = true;
+            gbAjaxSucces = true;
             ajaxShowResult(data);
 //            $('#execButton').toggleClass('active');
         },
@@ -84,10 +85,12 @@ function ajaxGetData(data) {
                   textStatus + '\n' +
                   errorThrown);
             */
+            gbAjaxSucces = true;
             ajaxShowResult(data);
 //            $('#execButton').toggleClass('active');
         },
         fail: function(jqXHR, textStatus){
+            gbAjaxSucces = true;
             if(textStatus === 'timeout')
             {     
                 $('.results-container').html('<h1>Sistema SAP non disponibile<h1>');
