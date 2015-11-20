@@ -37,7 +37,7 @@ $(function(){
         $(this).toggleClass('active');
         var data = { 
             _FUNCTION: 'Z_SAMPLERFC',
-            name:      'Pietro',
+//            name:      'Pietro',
             callback:  'jsonCallback',
             sqlTable:  $('#sqlTable').val(),
             sqlWhere:  $('#sqlWhere').val(),
@@ -97,7 +97,7 @@ function ajaxGetData(data) {
                 $('.results-container').show();
             }
         },
-        timeout: 10000 // sets timeout to 10 seconds
+        timeout: 120000 // sets timeout to 120 seconds
     });
     $('#execButton').toggleClass('active');
 }
@@ -121,21 +121,7 @@ function ajaxShowResult(data, modal) {
 }
 
 function showTableResults(data) {
-    var header = $('#sqlFields').val().split(" ");
     var str = '';
-    /*
-    str = "<ul>";
-    for( var i=0; i<data.results.length; i++ ) {
-        if( data.results[i].name == "MATNR" ) str += '</br>';
-        str += "<li>" + data.results[i].name + ":\t" + data.results[i].value + "\n</li>";
-    }
-    */
-    /*
-    for( var i=0; i<data.results.item.length; i++ ) {
-        str += "<li>" + data.results.item[i].name + ":\t" + data.results.item[i].value + "\n</li>";
-    }
-    */
-    //str += "</ul>";
         
     str += '<div class=\"container table-results-header\">';
     str += '  <h2>Tabella ' + $('#sqlTable').val() + '</h2>';
@@ -143,21 +129,18 @@ function showTableResults(data) {
     str += '  <table class=\"table table-hover\">';
     str += '    <thead>';
     str += '      <tr>';
-    /*
-    for( var i=0; i<header.length; i++ ) {
-        str += '<th>' + data.results[i].name + '</th>';
+    
+    for( var i=0; i<data.columns.length; i++ ) {
+        str += '<th>' + data.columns[i].column + '</th>';
     }
-    */
-    for( var i=0; i<header.length; i++ ) {
-        str += '<th>' + header[i] + '</th>';
-    }
+
     str += '      </tr>';
     str += '    </thead>';
     str += '    <tbody class=\"table-results-body\">';
     if ( data.results !== undefined ) { 
-        for( var j=0; j<data.results.length; j+=header.length ) {
+        for( var j=0; j<data.results.length; j+=data.columns.length ) {
             str += '      <tr>';
-            for( var i=j; i<j+header.length; i++ ) {
+            for( var i=j; i<j+data.columns.length; i++ ) {
                 str += '<td>' + data.results[i].value + '</td>';
             }
             str += '      </tr>';
